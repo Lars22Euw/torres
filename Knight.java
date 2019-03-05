@@ -1,16 +1,10 @@
-package turrets;
+package torres;
 
 public class Knight {
 	int yPos;
 	int xPos;
-	Player player;	// 1..4 oder 0 für König?
-//	int lvl;	// möglich aber redundant.
+	Player player;
 	
-	
-	/**
-	 * Can only be used at the start of the game.<br>
-	 * Since new knights are placed next to old ones.
-	 */
 	Knight(Player p, int x, int y) {
 		this.xPos = x;
 		this.yPos = y;
@@ -19,15 +13,25 @@ public class Knight {
 	}
 	
 	/**
-	 * TODO: Gültigkeit wird hier nicht geprüft.
-	 * Eins der 4 Felder um Knight p.
-	 * |x+y| = 1;
-	 * @param x relativ offset in x
-	 * @param y relativ offset in y
+	 * @param dx relativ offset in x
+	 * @param dy relativ offset in y
+	 * TODO: check if useful at all.
 	 */
-	Knight(Knight p, int x, int y) {
-		Knight k = new Knight(p.player, p.xPos+x, p.yPos+y);
-		p.player.usedKnights++;
-		p.player.knights.add(k);
+	Knight(Knight k, int dx, int dy) {
+		this.xPos = k.xPos+dx;
+		this.yPos = k.yPos+dy;
+		this.player = k.player;
+		System.out.println("Placed Knight at "+(k.xPos+dx)+", "+(k.yPos+dy));
+	}
+	
+	/**
+	 * @param p
+	 * @param f
+	 */
+	Knight(Player p, Field f) {
+		this.xPos = f.x;
+		this.yPos = f.y;
+		this.player = p;
+		f.player = p;
 	}
 }

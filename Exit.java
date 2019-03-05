@@ -1,12 +1,14 @@
-package turrets;
+package torres;
 
 public class Exit extends Exception {
 
+	/**
+	 * prints message in Chat.<br>
+	 * No new line if null.
+	 * @param message
+	 */
 	public Exit(String message) {
-		System.out.println(message);
-	}
-
-	public Exit() {
+		if (message != null) System.out.println(message);
 	}
 
 	private static final long serialVersionUID = 1L;
