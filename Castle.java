@@ -39,12 +39,10 @@ public class Castle {
 		return f;
 	}
 	
-	//TODO: this shallow copy looks bad.
 	public ArrayList<Field> getEmptyFloor() {
-		var tmp = new ArrayList<Field>();
-		for (Field f: floor) {
-			tmp.add(new Field(f.x, f.y));
-		}
+		var tmp = new ArrayList<Field>(); 
+		tmp.addAll(floor);
+		
 		for (Field f: tmp) {
 			if (f.player != null) tmp.remove(f);
 		}
